@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>KC → Minneapolis → Las Vegas · Oct 28 – Nov 1, 2026</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --card: #141414; --border: #222;
+    --text: #e0e0e0; --dim: #888; --accent: #ff6a00;
+    --green: #2ecc71; --red: #e74c3c; --blue: #3498db;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    max-width: 480px; margin: 0 auto; padding: 16px 16px 40px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .header { text-align: center; padding: 20px 0 12px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .header h1 { font-size: 1.5rem; font-weight: 700; }
+  .header .dates { color: var(--dim); font-size: 0.9rem; margin-top: 4px; }
+  .header .emoji { font-size: 2.5rem; display: block; margin-bottom: 4px; }
+  .status-bar { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+  .status-pill { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; white-space: nowrap; flex-shrink: 0; }
+  .status-pill.good { border-color: var(--green); color: var(--green); }
+  .status-pill.warn { border-color: var(--accent); color: var(--accent); }
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  .section h2 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .section h2 .icon { font-size: 1.2rem; }
+  .update { padding: 10px; background: rgba(255,106,0,0.08); border-radius: 8px; margin-bottom: 8px; font-size: 0.85rem; }
+  .update .time { color: var(--accent); font-weight: 600; }
+  .flight-row { display: grid; grid-template-columns: 48px 1fr; gap: 8px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .flight-row:last-child { border-bottom: none; }
+  .flight-icon { background: var(--bg); border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .flight-info .route { font-weight: 600; font-size: 0.9rem; }
+  .flight-info .detail { font-size: 0.78rem; color: var(--dim); }
+  .day-block { margin-bottom: 14px; }
+  .day-block:last-child { margin-bottom: 0; }
+  .day-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+  .day-event { padding: 8px 10px; background: var(--bg); border-radius: 6px; margin-bottom: 4px; font-size: 0.85rem; }
+  .day-event .time { font-weight: 600; color: var(--accent); }
+  .rec-card { padding: 12px; background: var(--bg); border-radius: 8px; margin-bottom: 8px; position: relative; }
+  .rec-card .name { font-weight: 600; }
+  .rec-card .desc { font-size: 0.8rem; color: var(--dim); margin-top: 4px; }
+  .rec-card .meta { font-size: 0.75rem; color: var(--dim); margin-top: 4px; }
+  .rec-card .badge { position: absolute; top: 10px; right: 12px; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .badge.top { background: rgba(255,106,0,0.2); color: var(--accent); }
+  .badge.near { background: rgba(52,152,219,0.2); color: var(--blue); }
+  .badge.award { background: rgba(46,204,113,0.2); color: var(--green); }
+  .badge.nut { background: rgba(231,76,60,0.2); color: var(--red); }
+  .tip { font-size: 0.82rem; padding: 8px 12px; background: rgba(52,152,219,0.08); border-radius: 8px; margin-bottom: 6px; }
+  .tip strong { color: var(--blue); }
+  .warn-tip { font-size: 0.82rem; padding: 8px 12px; background: rgba(255,106,0,0.08); border-radius: 8px; margin-bottom: 6px; }
+  .warn-tip strong { color: var(--accent); }
+  .countdown { text-align: center; padding: 10px; font-size: 0.9rem; }
+  .countdown .num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .footer { text-align: center; font-size: 0.7rem; color: var(--dim); margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .footer a { color: var(--accent); }
+  .thumbs { display: flex; gap: 4px; margin-top: 8px; }
+  .thumbs button {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    color: var(--dim); font-size: 0.9rem; padding: 3px 8px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .thumbs button:hover { border-color: var(--accent); }
+  .thumbs button.voted-up { background: rgba(46,204,113,0.15); border-color: var(--green); color: var(--green); }
+  .thumbs button.voted-down { background: rgba(231,76,60,0.15); border-color: var(--red); color: var(--red); }
+  .grp { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dim); font-weight: 700; margin: 12px 0 6px; }
+  .grp:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="emoji">🎸</span>
+  <h1>Minneapolis → Las Vegas</h1>
+  <div class="dates">Oct 28 – Nov 1, 2026 · KC → MSP → LAS → KC</div>
+</div>
+
+<div class="status-bar">
+  <span class="status-pill good">✈️ 4 Flights Booked</span>
+  <span class="status-pill good">🏨 Palazzo Confirmed</span>
+  <span class="status-pill good">🎫 Metallica ×2</span>
+  <span class="status-pill warn">⚠️ 40-min DEN Layover</span>
+  <span class="status-pill warn">🏋️ No PF Within 2 mi</span>
+</div>
+
+<!-- ATLAS UPDATES -->
+<div class="section">
+  <h2><span class="icon">🤖</span> Atlas Updates</h2>
+  <div class="update">
+    <div class="time">Thu Oct 1 — 4:10 PM CT</div>
+    Trip page built. All four bookings confirmed: WN 391/2635, F9 3749 + DL 1542, WN 2427, and The Palazzo. Delta seats selected and Luke's peanut allergy filed on the Delta PNR. Venetian deposit verified posted.
+  </div>
+  <div class="update">
+    <div class="time">Thu Oct 1 — 12:51 PM CT</div>
+    🏨 <strong>The Palazzo booked — Luxury Two Queen Suite, $1,019.21 all-in</strong> for 3 nights. Beat the $377/night quote by $263. Free cancellation holds until Mon Oct 26.
+  </div>
+  <div class="update">
+    <div class="time">Thu Oct 1 — 9:15 AM CT</div>
+    Hedge is live and verified: Frontier primary, Delta refundable backup. Crew confirmed on every segment — Luke is ticketed on all five flights.
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="section">
+  <h2><span class="icon">⏱️</span> Countdown</h2>
+  <div class="countdown">
+    <div class="num" id="countdown-days">X</div>
+    <div id="countdown-label">days until departure</div>
+    <div style="margin-top:6px;font-size:0.75rem;color:var(--dim)">
+      Show #1 in <span id="countdown-event" style="color:var(--accent);font-weight:600">X</span> <span id="countdown-event-label">days</span>
+    </div>
+  </div>
+</div>
+
+<!-- FLIGHTS -->
+<div class="section">
+  <h2><span class="icon">✈️</span> Flights</h2>
+
+  <div class="flight-row">
+    <div class="flight-icon">🛫</div>
+    <div class="flight-info">
+      <div class="route">Wed Oct 28 · Southwest MCI → MSP</div>
+      <div class="detail">
+        <strong>WN 391</strong> MCI 3:30 PM → DEN 4:20 PM<br>
+        <strong>WN 2635</strong> DEN 5:00 PM → MSP 8:00 PM<br>
+        Conf <strong>24B4ET</strong> (Jeff, seat 04B) · <strong>24GUR7</strong> (Luke, 04A, Companion Pass)
+      </div>
+    </div>
+  </div>
+  <div class="warn-tip"><strong>⚠️ 40-minute connection at Denver.</strong> It's the last MSP arrival of the day — any slip on WN 391 breaks it. Check the inbound tail at T-24h.</div>
+
+  <div class="flight-row">
+    <div class="flight-icon">🎯</div>
+    <div class="flight-info">
+      <div class="route">Thu Oct 29 · Frontier MSP → LAS <span style="color:var(--green)">— PRIMARY</span></div>
+      <div class="detail">
+        <strong>F9 3749</strong> MSP 12:10 PM → LAS 1:45 PM<br>
+        Conf <strong>WE9T7S</strong> · Jeff 2D, Luke 2F · Business Bundle · <strong>MSP Terminal 2 (Humphrey)</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="flight-row">
+    <div class="flight-icon">🛡️</div>
+    <div class="flight-info">
+      <div class="route">Thu Oct 29 · Delta MSP → LAS <span style="color:var(--blue)">— REFUNDABLE BACKUP</span></div>
+      <div class="detail">
+        <strong>DL 1542</strong> MSP 3:20 PM → LAS 4:45 PM<br>
+        Conf <strong>G5IGH3</strong> · Main Extra, fully refundable · <strong>MSP Terminal 1 (Lindbergh)</strong>
+      </div>
+    </div>
+  </div>
+  <div class="warn-tip"><strong>🚨 Cancel Delta `G5IGH3` before 3:20 PM CT on Oct 29</strong> once F9 3749 is airborne — $1,057.60 rides on it. Reminder set for 12:30 PM CT.</div>
+
+  <div class="flight-row">
+    <div class="flight-icon">🛬</div>
+    <div class="flight-info">
+      <div class="route">Sun Nov 1 · Southwest LAS → MCI</div>
+      <div class="detail">
+        <strong>WN 2427</strong> LAS 8:20 AM → MCI 1:05 PM<br>
+        Conf <strong>AYQ33E</strong> (Jeff, 04E) · <strong>AZ2IZR</strong> (Luke, 04F, Companion Pass)
+      </div>
+    </div>
+  </div>
+  <div class="warn-tip"><strong>An 8:20 AM departure forfeits the last day</strong> of the Life Burns Faster Experience (10 AM–2 PM at The Venetian) and means a ~6 AM checkout against an 11 AM hotel checkout.</div>
+</div>
+
+<!-- ITINERARY -->
+<div class="section">
+  <h2><span class="icon">📅</span> Itinerary</h2>
+
+  <div class="day-block">
+    <div class="day-label">Wed Oct 28 — KC → Minneapolis</div>
+    <div class="day-event"><span class="time">3:30 PM</span> — WN 391 departs MCI</div>
+    <div class="day-event"><span class="time">8:00 PM</span> — Land MSP, hotel check-in (Minnetonka)</div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label">Thu Oct 29 — Keynote → Fly → Show #1 🎸</div>
+    <div class="day-event"><span class="time">9:15 AM CT</span> — 🔥 <strong>Jeff's keynote</strong> — <a href="https://www.minnesotaitsymposium.com/agenda" style="color:var(--blue)" target="_blank">Minnesota IT Symposium</a>, Lake Minnetonka Ballroom</div>
+    <div class="day-event"><span class="time">10:00 AM CT</span> — Off stage. Straight to MSP (Terminal 2)</div>
+    <div class="day-event"><span class="time">12:10 PM CT</span> — F9 3749 departs MSP</div>
+    <div class="day-event"><span class="time">1:45 PM PT</span> — Land LAS</div>
+    <div class="day-event"><span class="time">3:00 PM PT</span> — 🏨 Check in at The Palazzo Front Desk</div>
+    <div class="day-event"><span class="time">2:00–8:00 PM</span> — 🚬 <a href="https://davidoffcigarbarlv.com/" style="color:var(--blue)" target="_blank">Davidoff cigar happy hour</a>, Fashion Show Mall</div>
+    <div class="day-event"><span class="time">7:00 PM</span> — 🎪 Doors @ Sphere (indoor walk from the hotel)</div>
+    <div class="day-event"><span class="time">8:30 PM</span> — 🎸 <strong>METALLICA — show #1</strong></div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label">Fri Oct 30 — Vegas PTO</div>
+    <div class="day-event"><span class="time">10 AM–8 PM</span> — 🛍️ Life Burns Faster Experience, Summit Showroom, The Venetian</div>
+    <div class="day-event"><span class="time">2–8 PM</span> — 🗄️ Black Box Friday, The Stadium @ The Palazzo (tickets required)</div>
+    <div class="day-event"><span class="time">12–6 PM</span> — 🩸 Red Cross × Metallica blood drive, Fashion Show, 2nd level near Dillard's</div>
+    <div class="day-event">Evening — open. Best dinner window of the trip. 🥩</div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label">Sat Oct 31 — HALLOWEEN → Show #2 🎸</div>
+    <div class="day-event"><span class="time">10 AM→</span> — 🛍️ Life Burns Faster Experience</div>
+    <div class="day-event"><span class="time">2–8 PM</span> — 🚬 Davidoff / BLACKENED cigar happy hour</div>
+    <div class="day-event"><span class="time">7:00 PM</span> — 🎪 Doors @ Sphere</div>
+    <div class="day-event"><span class="time">8:30 PM</span> — 🎸 <strong>METALLICA — show #2 (Halloween)</strong></div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label">Sun Nov 1 — Vegas → KC</div>
+    <div class="day-event"><span class="time">~6:00 AM</span> — Check out, head to LAS</div>
+    <div class="day-event"><span class="time">8:20 AM</span> — WN 2427 departs LAS</div>
+    <div class="day-event"><span class="time">1:05 PM CT</span> — Land MCI, home</div>
+  </div>
+</div>
+
+<!-- EVENT -->
+<div class="section">
+  <h2><span class="icon">🎸</span> The Event</h2>
+  <div class="rec-card">
+    <div class="badge top">ANCHOR</div>
+    <div class="name"><a href="https://www.thesphere.com/shows/metallica" style="color:inherit;text-decoration:none" target="_blank">🎸 Metallica — Life Burns Faster</a></div>
+    <div class="desc">No Repeat Weekend — Thursday and Saturday play completely different set lists. Jeff holds two shows: <strong>Oct 29</strong> and <strong>Oct 31 (Halloween)</strong>.</div>
+    <div class="meta"><strong>8:30 PM PT · doors 7:00 PM</strong> · <a href="https://www.google.com/maps/search/Sphere+255+Sands+Ave+Las+Vegas+NV+89169" style="color:var(--blue)" target="_blank">Sphere, 255 Sands Ave</a></div>
+    <div class="meta">🎫 Mobile tickets only — get them into the phone wallet before travel. No pro cameras, monopods or selfie sticks.</div>
+  </div>
+  <div class="tip"><strong>Transit:</strong> Sphere connects to The Venetian by an <strong>indoor walkway</strong> — you're staying in the right complex. No taxi, no Strip traffic. Doors are 90 minutes before showtime; expect heavy Halloween crowds on Oct 31.</div>
+  <div class="tip"><strong>Show effects:</strong> seat haptics, movement, fog, scent, wind and intense strobing at high volume. Worth knowing for Luke.</div>
+</div>
+
+<!-- HOTEL -->
+<div class="section">
+  <h2><span class="icon">🏨</span> Hotel</h2>
+  <div class="rec-card">
+    <div class="badge award">CONFIRMED</div>
+    <div class="name"><a href="https://www.google.com/maps/search/The+Palazzo+3325+S+Las+Vegas+Blvd+Las+Vegas+NV+89109" style="color:inherit;text-decoration:none" target="_blank">🏨 The Palazzo — Luxury Two Queen Suite</a></div>
+    <div class="desc">720 sq ft, two queen beds, separate living area. Reservation <strong>3Y4DS</strong>.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/The+Palazzo+3325+S+Las+Vegas+Blvd+Las+Vegas+NV+89109" style="color:var(--blue)" target="_blank">3325 S Las Vegas Blvd</a> · check-in <strong>Thu Oct 29, 3 PM</strong> (Palazzo Front Desk) · out <strong>Sun Nov 1, 11 AM</strong></div>
+    <div class="meta">💵 <strong>$1,019.21 total</strong> — $832.13 suite + $187.08 resort fees, tax included. Deposit $128.44 posted ✅</div>
+    <div class="meta">🗓️ <strong>Free cancellation until Mon Oct 26, 12:00 AM.</strong> Resort Services <a href="tel:18774445777" style="color:var(--blue)">1.877.444.5777</a></div>
+    <div class="meta">💳 Incidental hold $150/night at check-in · self-parking $20/day</div>
+  </div>
+  <div class="tip"><strong>The call-in upgrade:</strong> the Palazzo Executive Two Bedroom (1,850 sq ft) and the Corner Two Bedroom (2,800 sq ft) are never sold online — only via Suite Reservations <a href="tel:18666599643" style="color:var(--blue)">866.659.9643</a>. Ask what an upgrade costs at check-in; Halloween weekends sometimes clear inventory late.</div>
+</div>
+
+<!-- RESTAURANTS -->
+<div class="section">
+  <h2><span class="icon">🥩</span> Restaurants</h2>
+  <div class="tip"><strong>🥜 Luke's peanut allergy:</strong> flag it to every server before ordering. Peanuts and tree nuts are common in Thai, Cantonese and Middle Eastern kitchens — say so explicitly at Mott 32 and Miznon.</div>
+
+  <div class="grp">Las Vegas · on property (walk from the room)</div>
+
+  <div class="rec-card">
+    <div class="badge top">TOP PICK</div>
+    <div class="name"><a href="https://www.venetianlasvegas.com/dining/restaurants/cut-by-wolfgang-puck.html" style="color:inherit;text-decoration:none" target="_blank">🥩 CUT by Wolfgang Puck</a></div>
+    <div class="desc">Wolfgang Puck's flagship steakhouse — AAA Four Diamond. USDA Prime 35-day dry-aged and A5 wagyu. The 40 oz bone-in tomahawk is the headline.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/CUT+by+Wolfgang+Puck+The+Palazzo+Las+Vegas" style="color:var(--blue)" target="_blank">The Palazzo</a> · venetianlasvegas.com · reserve ahead</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-cut','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-cut','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.venetianlasvegas.com/dining/restaurants/delmonico-steakhouse.html" style="color:inherit;text-decoration:none" target="_blank">🥩 Delmonico Steakhouse</a></div>
+    <div class="desc">Emeril Lagasse's Vegas institution. Classic steakhouse with a New Orleans accent — Wine Spectator Grand Award winner. Chateaubriand carved tableside.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Delmonico+Steakhouse+The+Venetian+Las+Vegas" style="color:var(--blue)" target="_blank">The Venetian</a> · venetianlasvegas.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-delmonico','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-delmonico','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge near">SEAFOOD</div>
+    <div class="name"><a href="https://www.venetianlasvegas.com/dining/restaurants/estiatorio-milos.html" style="color:inherit;text-decoration:none" target="_blank">🐟 estiatorio Milos</a></div>
+    <div class="desc">Market-fresh Mediterranean seafood with a signature fish market. Their three-course prix fixe is widely called the best lunch deal on the Strip — the smart play before a show.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/estiatorio+Milos+The+Venetian+Las+Vegas" style="color:var(--blue)" target="_blank">The Venetian</a> · venetianlasvegas.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-milos','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-milos','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.google.com/maps/search/Mott+32+The+Venetian+Las+Vegas" style="color:inherit;text-decoration:none" target="_blank">🥢 Mott 32</a></div>
+    <div class="desc">The most distinctive table on property — Cantonese, applewood-roasted Peking duck and Iberico pork. Not a steakhouse, but the one dinner that feels like an event.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Mott+32+The+Venetian+Las+Vegas" style="color:var(--blue)" target="_blank">The Venetian</a></div>
+    <div class="thumbs">
+      <button onclick="vote('rest-mott32','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-mott32','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.google.com/maps/search/Bouchon+Bistro+The+Venetian+Las+Vegas" style="color:inherit;text-decoration:none" target="_blank">🥐 Bouchon Bistro</a></div>
+    <div class="desc">Thomas Keller's French bistro. The breakfast/lunch pick — and Bouchon Bakery next door is the easiest good coffee on property.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Bouchon+Bistro+The+Venetian+Las+Vegas" style="color:var(--blue)" target="_blank">The Venetian, 10th floor</a></div>
+    <div class="thumbs">
+      <button onclick="vote('rest-bouchon','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-bouchon','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="grp">Minneapolis · Oct 28 dinner, near the Minnetonka hotel</div>
+
+  <div class="rec-card">
+    <div class="badge top">CLOSEST</div>
+    <div class="name"><a href="https://jimmysmn.com/" style="color:inherit;text-decoration:none" target="_blank">🥩 Jimmy's Kitchen &amp; Bar</a></div>
+    <div class="desc">Minnetonka steakhouse and seafood house — hand-cut Angus steaks, market-fresh fish. Closest real steak to the hotel and open till 9 PM on a Wednesday.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Jimmy%27s+Kitchen+and+Bar+11000+Red+Circle+Dr+Minnetonka+MN" style="color:var(--blue)" target="_blank">11000 Red Circle Dr, Minnetonka</a> · jimmysmn.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-jimmys','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-jimmys','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge award">BEST OF THE TWO</div>
+    <div class="name"><a href="https://www.6smith.com/" style="color:inherit;text-decoration:none" target="_blank">🥩 6Smith</a></div>
+    <div class="desc">Artisan steak and seafood on the shore of Lake Minnetonka — USDA Prime Angus dry-aged 40 days, cut to spec by a third-generation butcher. Worth the 15-minute drive if the evening is open.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/6Smith+294+Grove+Lane+East+Wayzata+MN+55391" style="color:var(--blue)" target="_blank">294 Grove Lane East, Wayzata</a> · 6smith.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-6smith','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-6smith','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.bluebirchrestaurant.com/" style="color:inherit;text-decoration:none" target="_blank">🍽️ Blue Birch</a></div>
+    <div class="desc">Inside the Marriott itself — modern American, regionally sourced, with monthly chef specials. The zero-effort option after a travel day.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Blue+Birch+5801+Opus+Parkway+Minnetonka+MN+55343" style="color:var(--blue)" target="_blank">5801 Opus Parkway, Minnetonka</a> · bluebirchrestaurant.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rest-bluebirch','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-bluebirch','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+</div>
+
+<!-- COFFEE -->
+<div class="section">
+  <h2><span class="icon">☕</span> Coffee</h2>
+  <div class="tip"><strong>On-property fallback:</strong> Bouchon Bakery at The Venetian is the best cup inside the resort. Starbucks is in both towers when nothing else is open.</div>
+
+  <div class="grp">Las Vegas</div>
+
+  <div class="rec-card">
+    <div class="badge near">NEAREST</div>
+    <div class="name"><a href="https://www.google.com/maps/search/Aroma+Barista+Bar+300+W+Sahara+Ave+Las+Vegas" style="color:inherit;text-decoration:none" target="_blank">☕ Aroma Barista Bar</a></div>
+    <div class="desc">The closest real espresso bar to the Palazzo — about a mile up Sahara. Open 6 AM–6 PM daily, which makes it the one that works before an early call.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Aroma+Barista+Bar+300+W+Sahara+Ave+Las+Vegas" style="color:var(--blue)" target="_blank">300 W Sahara Ave</a></div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-aroma','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-aroma','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge award">BEST CUP</div>
+    <div class="name"><a href="https://www.google.com/maps/search/Yaw+Farm+Coffee+Roaster+7034+W+Charleston+Blvd+Las+Vegas" style="color:inherit;text-decoration:none" target="_blank">☕ Yaw Farm Coffee Roaster</a></div>
+    <div class="desc">Micro-farm beans roasted in house, Wush Wush and Gesha on the menu. Take-out only — a craft-coffee detour, not a sit-down.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Yaw+Farm+Coffee+Roaster+7034+W+Charleston+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">7034 W Charleston Blvd</a> · Tue–Sat 8 AM–2 PM, closed Sun–Mon</div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-yaw','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-yaw','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.google.com/maps/search/Vesta+Coffee+Roasters+1114+S+Casino+Center+Blvd+Las+Vegas" style="color:inherit;text-decoration:none" target="_blank">☕ Vesta Coffee Roasters</a></div>
+    <div class="desc">Arts District roastery and the most consistently recommended specialty shop in town — excellent pour-over, direct farm relationships.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Vesta+Coffee+Roasters+1114+S+Casino+Center+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">1114 S Casino Center Blvd #1</a></div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-vesta','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-vesta','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://mothershipcoffee.com/" style="color:inherit;text-decoration:none" target="_blank">☕ Mothership Coffee Roasters</a></div>
+    <div class="desc">Woman-owned Las Vegas roaster, beans from women-owned farms. The downtown shop sits inside the Fergusons Downtown complex.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Mothership+Coffee+1028+E+Fremont+St+Las+Vegas" style="color:var(--blue)" target="_blank">1028 E Fremont St</a> · mothershipcoffee.com</div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-mothership','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-mothership','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="grp">Minneapolis</div>
+
+  <div class="rec-card">
+    <div class="badge near">NEAREST</div>
+    <div class="name"><a href="https://www.blackwatercc.com/" style="color:inherit;text-decoration:none" target="_blank">☕ Blackwater Coffee &amp; Café</a></div>
+    <div class="desc">Minnetonka local since 2005 — espresso, handcrafted drinks and made-to-order breakfast. Opens 6:30 AM, so it works before the 8 AM registration.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Blackwater+Coffee+11210+Wayzata+Blvd+Minnetonka+MN" style="color:var(--blue)" target="_blank">11210 Wayzata Blvd Ste F, Minnetonka</a> · blackwatercc.com</div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-blackwater','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-blackwater','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://locations.dunnbrothers.com/mn/minnetonka/14525-hwy-7-221.html" style="color:inherit;text-decoration:none" target="_blank">☕ Dunn Brothers Coffee</a></div>
+    <div class="desc">Minnesota-born roaster that roasts in-house daily — single-origin beans from Papua New Guinea, Guatemala and Colombia. Opens 6 AM.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Dunn+Brothers+Coffee+14525+Hwy+7+Minnetonka+MN" style="color:var(--blue)" target="_blank">14525 Hwy 7 Suite 130, Minnetonka</a></div>
+    <div class="thumbs">
+      <button onclick="vote('coffee-dunnbros','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('coffee-dunnbros','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECORDS & CIGARS -->
+<div class="section">
+  <h2><span class="icon">🎸</span> Records &amp; Cigars</h2>
+
+  <div class="rec-card">
+    <div class="badge top">VINYL</div>
+    <div class="name"><a href="https://www.ziarecords.com/" style="color:inherit;text-decoration:none" target="_blank">💿 Zia Records</a></div>
+    <div class="desc">The Southwest's indie record institution since 1980 — new and used vinyl, listening stations, deep metal section. Open 10 AM–10 PM every day.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Zia+Records+1216+S+Rainbow+Blvd+Las+Vegas+NV+89146" style="color:var(--blue)" target="_blank">1216 S Rainbow Blvd</a> · ziarecords.com</div>
+  </div>
+
+  <div class="rec-card">
+    <div class="name"><a href="https://www.11thstreetrecords.net/" style="color:inherit;text-decoration:none" target="_blank">💿 11th Street Records</a></div>
+    <div class="desc">Downtown shop with a recording studio in the back — buy, sell, trade, and in-store sessions. Closed Monday and Tuesday, so Friday or Sunday only.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/11th+Street+Records+1023+E+Fremont+St+Las+Vegas" style="color:var(--blue)" target="_blank">1023 E Fremont St</a> · 11thstreetrecords.net</div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge near">ATMOSPHERE</div>
+    <div class="name"><a href="https://davidoffcigarbarlv.com/" style="color:inherit;text-decoration:none" target="_blank">🚬 Davidoff of Geneva Cigar Bar</a></div>
+    <div class="desc">Walk-in humidor plus a 50-seat outdoor patio looking straight down the Strip. This is also a stop on the Life Burns Faster fan trail. Open late.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Davidoff+of+Geneva+3200+S+Las+Vegas+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">3200 S Las Vegas Blvd #1245</a> (Fashion Show Mall) · davidoffcigarbarlv.com</div>
+  </div>
+</div>
+
+<!-- GYM -->
+<div class="section">
+  <h2><span class="icon">🏋️</span> Gym — Planet Fitness</h2>
+  <div class="warn-tip"><strong>Standing check, re-run Oct 1 from the booked hotel:</strong> nothing within 2 miles. Nearest is <a href="https://www.google.com/maps/search/Planet+Fitness+4001+S+Decatur+Blvd+Las+Vegas+NV+89103" style="color:var(--blue)" target="_blank">4001 S Decatur Blvd, Las Vegas NV 89103</a> — <strong>2.35 mi</strong>. Next: 4780 W Sahara Ave, 2.61 mi.</div>
+  <div class="tip"><strong>Use the resort instead:</strong> The Venetian and Palazzo share <strong>Canyon Ranch Spa + fitness</strong> — 69,000 sq ft, free to guests, with a 40-foot climbing wall. On site and the only realistic workout on a two-show day.</div>
+  <div class="tip"><strong>Minneapolis:</strong> no club within 2 mi of the Minnetonka hotel either — nearest is 11323 State Hwy 7, Minnetonka, at 2.55 mi. One night, no time; the hotel gym covers it.</div>
+</div>
+
+<!-- GETTING AROUND / INTEL -->
+<div class="section">
+  <h2><span class="icon">💡</span> Local Intel</h2>
+  <div class="tip"><strong>Sphere access:</strong> The Venetian/Palazzo complex connects to Sphere by an indoor bridge. From the Palazzo you walk through the Grand Canal Shoppes. No car needed for either show.</div>
+  <div class="tip"><strong>Two terminals at MSP:</strong> Frontier departs <strong>Terminal 2 (Humphrey)</strong>; Delta departs <strong>Terminal 1 (Lindbergh)</strong>. If the hedge moves you to Delta, you change terminals — build in the time.</div>
+  <div class="tip"><strong>Baggage:</strong> carry-on only for this run. It's airport → hotel → Sphere, and a checked bag breaks the 40-minute Denver connection.</div>
+  <div class="tip"><strong>Rates locked:</strong> the Palazzo booking is fully refundable until <strong>Mon Oct 26, 12:00 AM</strong>. A reminder will re-price the suite before that window shuts.</div>
+  <div class="tip"><strong>Tipping &amp; extras:</strong> the $187.08 in resort fees is already paid in the total — don't let it surprise you at checkout. A $150/night incidental hold goes on the card at check-in and releases after checkout.</div>
+  <div class="tip"><strong>Ongoing:</strong> 🥜 peanut allergy (J), 🚫 no alcohol — bars are for atmosphere and food. All temps °F.</div>
+</div>
+
+<div class="footer">
+  Atlas Travel Concierge · Auto-refreshes with live updates<br>
+  Last updated: Thu Oct 1, 2026 · <a href="#" onclick="location.reload()">Tap to refresh</a>
+</div>
+
+<script>
+(function() {
+  const depart = new Date('2026-10-28T15:30:00-05:00');
+  const event  = new Date('2026-10-29T20:30:00-07:00');
+  function update() {
+    const now = new Date();
+    const tripStarted = now >= depart;
+    const d = Math.max(0, Math.ceil((depart - now) / 86400000));
+    document.getElementById('countdown-days').textContent = tripStarted ? '🟢' : d;
+    document.getElementById('countdown-label').textContent = tripStarted ? 'TRIP IN PROGRESS' : 'days until departure';
+    document.getElementById('countdown-event').textContent = Math.max(0, Math.ceil((event - now) / 86400000));
+    if (tripStarted) {
+      document.getElementById('countdown-event-label').textContent = 'until the event';
+    }
+  }
+  update();
+  setInterval(update, 60000);
+})();
+
+function vote(id, dir, btn) {
+  var key = 'atlas_vote_' + id;
+  var current = localStorage.getItem(key);
+  var data = current ? JSON.parse(current) : {up:0, down:0, voted: null};
+  var container = btn.parentElement;
+  var upBtn = container.children[0];
+  var downBtn = container.children[1];
+
+  if (data.voted === dir) {
+    data[dir] = Math.max(0, data[dir] - 1);
+    data.voted = null;
+    upBtn.classList.remove('voted-up');
+    downBtn.classList.remove('voted-down');
+  } else {
+    if (data.voted) {
+      data[data.voted] = Math.max(0, data[data.voted] - 1);
+    }
+    data[dir] = (data[dir] || 0) + 1;
+    data.voted = dir;
+    upBtn.classList.toggle('voted-up', dir === 'up');
+    downBtn.classList.toggle('voted-down', dir === 'down');
+  }
+
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+(function(){
+  document.querySelectorAll('.thumbs').forEach(function(el){
+    var btn = el.querySelector('button');
+    if (!btn) return;
+    var match = btn.getAttribute('onclick').match(/vote\('([^']+)'/);
+    if (!match) return;
+    var id = match[1];
+    var data = JSON.parse(localStorage.getItem('atlas_vote_' + id) || '{"up":0,"down":0,"voted":null}');
+    if (data.voted === 'up') el.children[0].classList.add('voted-up');
+    if (data.voted === 'down') el.children[1].classList.add('voted-down');
+  });
+})();
+</script>
+
+</body>
+</html>
