@@ -68,6 +68,11 @@
   .thumbs button.voted-down { background: rgba(231,76,60,0.15); border-color: var(--red); color: var(--red); }
   .grp { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dim); font-weight: 700; margin: 12px 0 6px; }
   .grp:first-child { margin-top: 0; }
+  .alert-box { font-size: 0.85rem; padding: 10px 12px; background: rgba(231,76,60,0.10); border: 1px solid rgba(231,76,60,0.35); border-radius: 8px; margin-bottom: 10px; }
+  .alert-box strong { color: var(--red); }
+  .section ul { margin: 0 0 4px 20px; }
+  .section ul li { font-size: 0.82rem; color: var(--dim); margin-bottom: 6px; }
+  .section ul li strong { color: var(--text); }
 </style>
 </head>
 <body>
@@ -82,6 +87,7 @@
   <span class="status-pill good">✈️ 4 Flights Booked</span>
   <span class="status-pill good">🏨 Palazzo Confirmed</span>
   <span class="status-pill good">🎫 Metallica ×2</span>
+  <span class="status-pill good">🩸 Blood Donation Fri 12 PM</span>
   <span class="status-pill warn">⚠️ 40-min DEN Layover</span>
   <span class="status-pill warn">🏋️ No PF Within 2 mi</span>
 </div>
@@ -89,6 +95,10 @@
 <!-- ATLAS UPDATES -->
 <div class="section">
   <h2><span class="icon">🤖</span> Atlas Updates</h2>
+  <div class="update">
+    <div class="time">Thu Oct 1 — 6:00 PM CT</div>
+    Cigars removed from this trip at your request. Added your <strong>Friday noon</strong> blood donation, <strong>Fremont Street</strong> and the <strong>High Roller</strong> (the wheel behind the Flamingo), plus new finds — the Punk Rock Museum, the Neon Museum, the Pinball Hall of Fame, and the Golden Steer.
+  </div>
   <div class="update">
     <div class="time">Thu Oct 1 — 4:10 PM CT</div>
     Trip page built. All four bookings confirmed: WN 391/2635, F9 3749 + DL 1542, WN 2427, and The Palazzo. Delta seats selected and Luke's peanut allergy filed on the Delta PNR. Venetian deposit verified posted.
@@ -185,7 +195,7 @@
     <div class="day-event"><span class="time">12:10 PM CT</span> — F9 3749 departs MSP</div>
     <div class="day-event"><span class="time">1:45 PM PT</span> — Land LAS</div>
     <div class="day-event"><span class="time">3:00 PM PT</span> — 🏨 Check in at The Palazzo Front Desk</div>
-    <div class="day-event"><span class="time">2:00–8:00 PM</span> — 🚬 <a href="https://davidoffcigarbarlv.com/" style="color:var(--blue)" target="_blank">Davidoff cigar happy hour</a>, Fashion Show Mall</div>
+    <div class="day-event"><span class="time">4:00 PM</span> — 🎡 <a href="https://www.google.com/maps/search/High+Roller+3545+S+Las+Vegas+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">High Roller</a> — optional pre-show ride; daytime rate ends 4:59 PM</div>
     <div class="day-event"><span class="time">7:00 PM</span> — 🎪 Doors @ Sphere (indoor walk from the hotel)</div>
     <div class="day-event"><span class="time">8:30 PM</span> — 🎸 <strong>METALLICA — show #1</strong></div>
   </div>
@@ -194,14 +204,15 @@
     <div class="day-label">Fri Oct 30 — Vegas PTO</div>
     <div class="day-event"><span class="time">10 AM–8 PM</span> — 🛍️ Life Burns Faster Experience, Summit Showroom, The Venetian</div>
     <div class="day-event"><span class="time">2–8 PM</span> — 🗄️ Black Box Friday, The Stadium @ The Palazzo (tickets required)</div>
-    <div class="day-event"><span class="time">12–6 PM</span> — 🩸 Red Cross × Metallica blood drive, Fashion Show, 2nd level near Dillard's</div>
-    <div class="day-event">Evening — open. Best dinner window of the trip. 🥩</div>
+    <div class="day-event"><span class="time">12:00 PM</span> — 🩸 <strong>YOUR BLOOD DONATION</strong> — Red Cross × Metallica blood drive, Fashion Show, 2nd level near Dillard's. Allow ~1 hour. Eat iron-rich food and drink water beforehand.</div>
+    <div class="day-event"><span class="time">Evening</span> — 🎡 <a href="https://www.google.com/maps/search/High+Roller+3545+S+Las+Vegas+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">High Roller</a> at sunset, then 🎰 <a href="https://www.google.com/maps/search/Fremont+Street+Experience+425+Fremont+St+Las+Vegas" style="color:var(--blue)" target="_blank">Fremont Street</a> downtown — your only free night</div>
+    <div class="day-event">Evening — 🎰 <a href="https://www.google.com/maps/search/Fremont+Street+Experience+425+Fremont+St+Las+Vegas" style="color:var(--blue)" target="_blank">Fremont Street</a> downtown (Viva Vision shows hourly from 6 PM) — eat downtown or before you go</div>
   </div>
 
   <div class="day-block">
     <div class="day-label">Sat Oct 31 — HALLOWEEN → Show #2 🎸</div>
     <div class="day-event"><span class="time">10 AM→</span> — 🛍️ Life Burns Faster Experience</div>
-    <div class="day-event"><span class="time">2–8 PM</span> — 🚬 Davidoff / BLACKENED cigar happy hour</div>
+    <div class="day-event"><span class="time">All day</span> — 🎃 Halloween on the Strip (costumes everywhere)</div>
     <div class="day-event"><span class="time">7:00 PM</span> — 🎪 Doors @ Sphere</div>
     <div class="day-event"><span class="time">8:30 PM</span> — 🎸 <strong>METALLICA — show #2 (Halloween)</strong></div>
   </div>
@@ -299,6 +310,17 @@
     <div class="thumbs">
       <button onclick="vote('rest-bouchon','up',this)" title="Loved it">👍</button>
       <button onclick="vote('rest-bouchon','down',this)" title="Not for me">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge award">OLD VEGAS</div>
+    <div class="name"><a href="https://goldensteer.com/" style="color:inherit;text-decoration:none" target="_blank">🥩 The Golden Steer Steakhouse</a></div>
+    <div class="desc">The oldest steakhouse in Las Vegas, serving since 1958 — and the best atmosphere in the city for a steak man. Red leather booths named for Sinatra, Elvis and Ali, tuxedoed servers, Caesar salad made tableside, bananas Foster flambéed at the table. Prime aged beef, wet-aged 35 days.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Golden+Steer+Steakhouse+308+W+Sahara+Ave+Las+Vegas+NV+89102" style="color:var(--blue)" target="_blank">308 W Sahara Ave</a> · ~1.5 mi from the Palazzo · goldensteer.com · <strong>reserve early, it books out</strong></div>
+    <div class="thumbs">
+      <button onclick="vote('rest-goldensteer','up',this)" title="Loved it">👍</button>
+      <button onclick="vote('rest-goldensteer','down',this)" title="Not for me">👎</button>
     </div>
   </div>
 
@@ -410,9 +432,9 @@
   </div>
 </div>
 
-<!-- RECORDS & CIGARS -->
+<!-- RECORDS & VINYL -->
 <div class="section">
-  <h2><span class="icon">🎸</span> Records &amp; Cigars</h2>
+  <h2><span class="icon">🎸</span> Records &amp; Vinyl</h2>
 
   <div class="rec-card">
     <div class="badge top">VINYL</div>
@@ -426,13 +448,98 @@
     <div class="desc">Downtown shop with a recording studio in the back — buy, sell, trade, and in-store sessions. Closed Monday and Tuesday, so Friday or Sunday only.</div>
     <div class="meta">📍 <a href="https://www.google.com/maps/search/11th+Street+Records+1023+E+Fremont+St+Las+Vegas" style="color:var(--blue)" target="_blank">1023 E Fremont St</a> · 11thstreetrecords.net</div>
   </div>
+</div>
+
+<!-- FREMONT STREET & THE HIGH ROLLER -->
+<div class="section">
+  <h2><span class="icon">🎡</span> Fremont Street at Night &amp; The High Roller</h2>
 
   <div class="rec-card">
-    <div class="badge near">ATMOSPHERE</div>
-    <div class="name"><a href="https://davidoffcigarbarlv.com/" style="color:inherit;text-decoration:none" target="_blank">🚬 Davidoff of Geneva Cigar Bar</a></div>
-    <div class="desc">Walk-in humidor plus a 50-seat outdoor patio looking straight down the Strip. This is also a stop on the Life Burns Faster fan trail. Open late.</div>
-    <div class="meta">📍 <a href="https://www.google.com/maps/search/Davidoff+of+Geneva+3200+S+Las+Vegas+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">3200 S Las Vegas Blvd #1245</a> (Fashion Show Mall) · davidoffcigarbarlv.com</div>
+    <div class="badge award">FREE · GO NIGHTLY</div>
+    <div class="name"><a href="https://fremontstreetexperience.com/" style="color:inherit;text-decoration:none" target="_blank">🎰 Fremont Street Experience</a></div>
+    <div class="desc">Downtown Las Vegas under the world's largest video screen — a 1,375-ft LED canopy. The <strong>Viva Vision</strong> light shows are free, run at the top of every hour from 6 PM to 2 AM, and each lasts 6–8 minutes. Three live-music stages play free every night. <strong>Friday's 7 PM reel is Stone Temple Pilots</strong> — your night. SlotZilla zipline runs the length of the canopy if you want the aerial view.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Fremont+Street+Experience+425+Fremont+St+Las+Vegas+NV+89101" style="color:var(--blue)" target="_blank">425 Fremont St</a> · ~10 min / 5 mi from the Palazzo · garage at 4th &amp; Carson ($5/hr, $25 max) · <strong>wear comfortable shoes, it's a pedestrian mall</strong></div>
+    <div class="thumbs">
+      <button onclick="vote('rec-fremont','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-fremont','down',this)" title="Skip it">👎</button>
+    </div>
   </div>
+
+  <div class="rec-card">
+    <div class="badge near">BOOK A NIGHT SLOT</div>
+    <div class="name"><a href="https://www.caesars.com/linq/things-to-do/attractions/high-roller" style="color:inherit;text-decoration:none" target="_blank">🎡 The High Roller at The LINQ</a></div>
+    <div class="desc">That's the wheel you spotted behind the Flamingo — 550 ft, the tallest observation wheel in North America, and the best 360° view of the Strip, the Sphere and the valley. One rotation takes 30 minutes in a climate-controlled pod. <strong>Ride it after dark</strong> for the neon; sunset is the sweet spot. (The "Happy Half Hour" pod is the open-bar version — the standard cabin is the one for you.)</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/High+Roller+3545+S+Las+Vegas+Blvd+Las+Vegas+NV+89109" style="color:var(--blue)" target="_blank">3545 S Las Vegas Blvd</a>, The LINQ Promenade · ~15 min walk from the Palazzo · <strong>Mon–Thu 12 PM–12 AM · Fri–Sun 12 PM–2 AM</strong> · daytime from $23.50 (tickets valid only to 4:59 PM) · anytime/night from $34.75 · allow 60 min with boarding</div>
+    <div class="thumbs">
+      <button onclick="vote('rec-highroller','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-highroller','down',this)" title="Skip it">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge">PAIRS WITH FREMONT</div>
+    <div class="name"><a href="https://neonmuseum.org/" style="color:inherit;text-decoration:none" target="_blank">💡 The Neon Museum (Neon Boneyard)</a></div>
+    <div class="desc">The salvaged neon signs of old Las Vegas, restored and lit up across an outdoor boneyard — the Sahara, the Stardust, the Moulin Rouge. Genuinely unlike anything else in the city, and it's downtown, so it stacks onto the Fremont night. ~45 minutes. Evenings only for the lit-up experience.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Neon+Museum+770+N+Las+Vegas+Blvd+Las+Vegas+NV+89101" style="color:var(--blue)" target="_blank">770 N Las Vegas Blvd</a> · evening admission 3–11 PM (last entry 10 PM) · ~5 min from Fremont St · neonmuseum.org · <strong>outdoors and uncovered — check the wind</strong></div>
+    <div class="thumbs">
+      <button onclick="vote('rec-neon','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-neon','down',this)" title="Skip it">👎</button>
+    </div>
+  </div>
+</div>
+
+<!-- MORE FINDS -->
+<div class="section">
+  <h2><span class="icon">🎯</span> More Finds — Worth Your Time</h2>
+
+  <div class="rec-card">
+    <div class="badge top">BEST BET FOR YOU</div>
+    <div class="name"><a href="https://www.thepunkrockmuseum.com/" style="color:inherit;text-decoration:none" target="_blank">🎸 The Punk Rock Museum</a></div>
+    <div class="desc">Hands-on rock museum run by people who were actually in the bands — two floors of guitars, stage-worn gear, flyers and hand-written lyrics from the Ramones forward. There's a <strong>Jam Room where you can plug in and play the actual instruments</strong>, a tattoo parlor, and a bar. Currently hosting a <strong>Motörhead exhibition</strong> that runs through your trip. Luke will be able to touch things, which he won't at the Sphere. Guided tours are led by working musicians.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Punk+Rock+Museum+1422+Western+Ave+Las+Vegas+NV+89102" style="color:var(--blue)" target="_blank">1422 Western Ave</a> (between the Arts District and I-15) · ~10 min from the Palazzo · <strong>Fri &amp; Sat 12–7 PM</strong> · GA $49.99 adults, ages 4–12 $19.50 · thepunkrockmuseum.com</div>
+    <div class="thumbs">
+      <button onclick="vote('rec-punk','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-punk','down',this)" title="Skip it">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge near">WALKABLE FROM VENETIAN</div>
+    <div class="name"><a href="https://www.venetianlasvegas.com/entertainment.html" style="color:inherit;text-decoration:none" target="_blank">🎪 Sphere — exterior light show</a></div>
+    <div class="desc">You'll be inside twice, but the Sphere's LED exoskeleton is its own show from the outside — the "X" patterns and eyeball animations run from dusk. Best free view is from the Venetian/Palazzo bridge, which is roughly 30 seconds from your room. Worth a deliberate walk on a non-show night.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Sphere+255+Sands+Ave+Las+Vegas" style="color:var(--blue)" target="_blank">255 Sands Ave</a> · free · just look up</div>
+    <div class="thumbs">
+      <button onclick="vote('rec-sphereext','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-sphereext','down',this)" title="Skip it">👎</button>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="badge near">FUN FOR LUKE</div>
+    <div class="name"><a href="https://www.pinballmuseum.org/" style="color:inherit;text-decoration:none" target="_blank">🕹️ The Pinball Hall of Fame</a></div>
+    <div class="desc">Over 200 restored pinball and arcade machines, all on free play for pocket change, run by the Las Vegas Pinball Collectors Club. Loud, cheap, genuinely fun, and a welcome break from the Strip. Kids get right in there.</div>
+    <div class="meta">📍 <a href="https://www.google.com/maps/search/Pinball+Hall+of+Fame+4925+S+Las+Vegas+Blvd+Las+Vegas" style="color:var(--blue)" target="_blank">4925 S Las Vegas Blvd</a> · a short drive south of the Palazzo · open daily, late · pinballmuseum.org</div>
+    <div class="thumbs">
+      <button onclick="vote('rec-pinball','up',this)" title="Yes, plan it">👍</button>
+      <button onclick="vote('rec-pinball','down',this)" title="Skip it">👎</button>
+    </div>
+  </div>
+</div>
+
+<!-- BLOOD DRIVE -->
+<div class="section">
+  <h2><span class="icon">🩸</span> Your Blood Donation — Friday Noon</h2>
+  <div class="alert-box">
+    <strong>Red Cross × Metallica blood drive</strong> · Friday Oct 30, 12:00 PM · Fashion Show, 2nd level near Dillard's — directly across from the Palazzo. It's the fan-give-back event Metallica runs on every tour stop.
+  </div>
+  <ul>
+    <li><strong>Eat before, not after.</strong> Iron-rich meal about 2–3 hours prior. Your best pre-donation option is a steak or seafood lunch — <a href="https://www.venetianlasvegas.com/dining/restaurants/estiatorio-milos.html" style="color:var(--blue)" target="_blank">estiatorio Milos</a> (seafood, iron-rich) or <a href="https://www.venetianlasvegas.com/dining/restaurants/cut-by-wolfgang-puck.html" style="color:var(--blue)" target="_blank">CUT</a> (red meat) are both in your own building.</li>
+    <li><strong>Hydrate hard starting Thursday.</strong> Extra water the day before makes the stick easier and the recovery faster.</li>
+    <li><strong>Skip the gym that day.</strong> Specifically: no Canyon Ranch workout before or for ~24 hours after. This is the one day on the trip to take it easy — not the day to test your max.</li>
+    <li><strong>Bring your ID and expect ~1 hour</strong> end-to-end with screening and the rest period.</li>
+    <li><strong>Then take it easy the rest of the day.</strong> Black Box Friday runs 2–8 PM and is a good low-key option; save the heavy walking for Saturday's show.</li>
+    <li><strong>You're a keto/low-carb guy giving blood</strong> — if you haven't eaten enough carbs, eat a real meal with some starch beforehand. Donation on an empty, carb-low tank is when people get lightheaded.</li>
+  </ul>
 </div>
 
 <!-- GYM -->

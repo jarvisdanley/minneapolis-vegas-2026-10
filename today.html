@@ -149,7 +149,7 @@ var TRIP = {
         { time: '10:00 AM', text: 'Off stage · straight to MSP Terminal 2' },
         { time: '12:10 PM', text: 'Depart MSP on F9 3749 (seats 2D / 2F)' },
         { time: '1:45 PM PT', text: 'Land LAS · ~15 min to The Palazzo' },
-        { time: '2:00–8:00 PM', text: '🚬 Davidoff cigar happy hour, Fashion Show Mall' },
+        { time: '4:00 PM', text: '🎡 High Roller option — daytime rate ends 4:59 PM' },
         { time: '3:00 PM', text: '🏨 Check in at the Palazzo Front Desk' },
         { time: '7:00 PM PT', text: '🎪 Doors @ Sphere — indoor walk from the hotel' },
         { time: '8:30 PM', text: '🎸 METALLICA — Life Burns Faster, show #1' }
@@ -172,26 +172,29 @@ var TRIP = {
       label: 'Friday · Vegas PTO',
       weather: { hi: 78, lo: 55, icon: '☀️', rain: 4 },
       pills: [
-        { text: '🛍️ Life Burns Faster 10a–8p', cls: 'good' },
-        { text: '🗄️ Black Box Friday 2–8p', cls: 'good' },
-        { text: '🥩 Best dinner night', cls: 'good' }
+        { text: '🩸 Blood donation 12p', cls: 'warn' },
+        { text: '🎰 Fremont St tonight', cls: 'good' },
+        { text: '🎡 High Roller', cls: 'good' },
+        { text: '🗄️ Black Box Friday 2–8p', cls: 'good' }
       ],
       timeline: [
         { time: '10 AM–8 PM', text: '🛍️ Life Burns Faster Experience · Summit Showroom, The Venetian' },
-        { time: '12–6 PM', text: '🩸 Red Cross × Metallica blood drive · Fashion Show, 2nd level near Dillard\'s' },
+        { time: '12:00 PM', text: '🩸 YOUR BLOOD DONATION · Red Cross × Metallica drive, Fashion Show' },
         { time: '2–8 PM', text: '🗄️ Black Box Friday · The Stadium @ The Palazzo (tickets required)' },
-        { time: 'Evening', text: 'No show tonight — this is the dinner window of the trip' }
+        { time: 'Evening', text: '🎡 High Roller at sunset → 🎰 Fremont Street downtown (Viva Vision hourly from 6 PM)' }
       ],
       transit: [
         'Everything today is inside the Venetian/Palazzo complex except the blood drive',
         'Fashion Show Mall is directly across the Strip — ~8 min walk',
-        'Sphere is closed tonight — no show'
+        'Sphere is closed tonight — no show',
+        'Fremont Street is ~10 min / 5 mi from the Palazzo; the 7 PM reel is Stone Temple Pilots'
       ],
-      tip: 'No show tonight, which makes this the one evening with no deadline. Book the steakhouse properly and take your time — CUT for the dry-aged program, Delmonico if you want the old-school New Orleans room. If Luke is in the mood for something different, Mott 32 is the most memorable table on property. <strong>Flag his peanut allergy to the server before ordering</strong> — say it out loud even if it feels repetitive.',
+      tip: '<strong>Give blood at noon, then take it easy.</strong> Eat an iron-rich meal 2–3 hours before and drink extra water from Thursday onward — no gym today. Then use the one free evening of the trip: <strong>High Roller at sunset</strong> (~5:45 PM, LINQ Promenade, ~15 min walk) and <strong>Fremont Street</strong> downtown, where the Viva Vision light shows run hourly from 6 PM and the 7 PM reel is Stone Temple Pilots. Dinner: Golden Steer (308 W Sahara, since 1958) on the way, or eat downtown. If you would rather stay close, CUT or Delmonico on property. <strong>Flag Luke\'s peanut allergy to every server</strong> — say it out loud even if it feels repetitive.',
       food: [
         { name: 'CUT by Wolfgang Puck', meta: '📍 The Palazzo · AAA Four Diamond · the 40 oz tomahawk is the headline', id: 'today-lv-cut-2' },
         { name: 'Delmonico Steakhouse', meta: '📍 The Venetian · Emeril Lagasse · Wine Spectator Grand Award · chateaubriand tableside', id: 'today-lv-delmonico' },
         { name: 'Mott 32', meta: '📍 The Venetian · Cantonese, applewood Peking duck · ⚠️ nut allergy — brief the server', id: 'today-lv-mott32' },
+        { name: 'The Golden Steer Steakhouse', meta: '📍 308 W Sahara Ave · oldest steakhouse in Vegas, since 1958 · Sinatra\'s booth', id: 'today-lv-goldensteer' },
         { name: 'Vesta Coffee Roasters', meta: '📍 1114 S Casino Center Blvd · Arts District pour-over', id: 'today-lv-vesta' }
       ]
     },
@@ -201,13 +204,11 @@ var TRIP = {
       weather: { hi: 77, lo: 54, icon: '☀️', rain: 5 },
       pills: [
         { text: '🎃 Halloween on the Strip', cls: 'warn' },
-        { text: '🎸 Metallica 8:30pm', cls: 'good' },
-        { text: '🚬 Cigar happy hour 2–8p', cls: 'good' }
+        { text: '🎸 Metallica 8:30pm', cls: 'good' }
       ],
       warn: 'Halloween on the Strip is the busiest night of the year here, and this is the priciest night on the hotel bill. Doors are 7:00 PM — leave the suite early and use the indoor bridge rather than attempting a rideshare.',
       timeline: [
         { time: '10 AM→', text: '🛍️ Life Burns Faster Experience · The Venetian' },
-        { time: '2–8 PM', text: '🚬 Davidoff / BLACKENED cigar happy hour · Fashion Show Mall' },
         { time: '5:30 PM PT', text: '⚽ SKC vs Dallas kickoff (7:30 PM CT) — catchable before doors if you want it' },
         { time: '7:00 PM PT', text: '🎪 Doors @ Sphere' },
         { time: '8:30 PM', text: '🎸 METALLICA — show #2 · HALLOWEEN' }
