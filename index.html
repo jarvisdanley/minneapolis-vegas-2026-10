@@ -653,9 +653,10 @@
   function update() {
     const now = new Date();
     const tripStarted = now >= depart;
+    const departsToday = !tripStarted && now.toDateString() === depart.toDateString();
     const d = Math.max(0, Math.ceil((depart - now) / 86400000));
-    document.getElementById('countdown-days').textContent = tripStarted ? '🟢' : d;
-    document.getElementById('countdown-label').textContent = tripStarted ? 'TRIP IN PROGRESS' : 'days until departure';
+    document.getElementById('countdown-days').textContent = tripStarted ? '🟢' : (departsToday ? '3:30 PM' : d);
+    document.getElementById('countdown-label').textContent = tripStarted ? 'TRIP IN PROGRESS' : (departsToday ? 'departs today from MCI' : 'days until departure');
     document.getElementById('countdown-event').textContent = Math.max(0, Math.ceil((event - now) / 86400000));
     if (tripStarted) {
       document.getElementById('countdown-event-label').textContent = 'until the event';
