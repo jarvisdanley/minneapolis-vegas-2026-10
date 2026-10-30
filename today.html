@@ -80,7 +80,7 @@
 </div>
 
 <div class="section" id="weather-section">
-  <h2>🌤️ Weather <span style="font-size:0.65rem;color:var(--dim);font-weight:400">· refreshed Thu Oct 29, 7:00 AM CT</span></h2>
+  <h2>🌤️ Weather <span style="font-size:0.65rem;color:var(--dim);font-weight:400">· refreshed Fri Oct 30, 7:00 AM PT</span></h2>
   <div class="weather-row" id="weather-content"></div>
 </div>
 
@@ -181,30 +181,31 @@ var TRIP = {
     {
       date: '2026-10-30',
       label: 'Friday · Vegas PTO',
-      weather: { hi: 74, lo: 59, icon: '🌦️', rain: 31 },
+      weather: { hi: 73, lo: 60, icon: '⛈️', rain: 60 },
       pills: [
+        { text: '⛈️ 60% storms — peak 1–3p', cls: 'warn' },
         { text: '🩸 Blood donation 12p', cls: 'warn' },
-        { text: '🎰 Fremont St tonight', cls: 'good' },
-        { text: '🎡 High Roller', cls: 'good' },
+        { text: '🛍️ Pop-Up 10a–8p', cls: 'good' },
         { text: '🗄️ Black Box Friday 2–8p', cls: 'good' },
-        { text: '🎸 W.A.S.P. option 7:30p', cls: 'warn' }
+        { text: '💰 DL 1542 refund unconfirmed', cls: 'warn' }
       ],
+      warn: 'The forecast flipped overnight: Friday is now <strong>showers and thunderstorms likely before 5 PM, 60%</strong> — hourly noon 41% · 1 PM 54% · <strong>2 PM 61%</strong> · 3 PM 50% · 5 PM 17%. Yesterday this read 31% and "slight". The blood drive is inside Fashion Show so the donation is dry; the <strong>walk</strong> is not. Take the shell. Evening clears to 12–13%, so Fremont Street is fine.',
       timeline: [
-        { time: '10 AM–8 PM', text: '🛍️ Life Burns Faster Experience · Summit Showroom, The Venetian' },
-        { time: '12:00 PM', text: '🩸 YOUR BLOOD DONATION · Red Cross × Metallica drive, Fashion Show' },
+        { time: '10 AM–8 PM', text: '🛍️ Life Burns Faster Experience (Pop-Up Shop & Fan Experience) · Summit Showroom, The Venetian — Friday hours 10 AM–8 PM, off Restaurant Row near the Bridge to Sphere' },
+        { time: '12:00 PM', text: '🩸 YOUR BLOOD DONATION · Red Cross × Metallica, Fashion Show, 2nd level near Dillard&rsquo;s. Drive runs Mon–Fri 12–6 PM. Bring ID, allow ~1 hour' },
+        { time: 'After donating', text: '🎁 Delta Backstage Lounge + limited-edition Squindo T-shirt while supplies last + automatic entry to win the on-site drum kit' },
         { time: '2–8 PM', text: '🗄️ Black Box Friday · The Stadium @ The Palazzo (tickets required)' },
-        { time: 'Evening', text: '🎡 High Roller at sunset → 🎰 Fremont Street downtown (Viva Vision hourly from 6 PM)' },
+        { time: 'Evening', text: '🎡 High Roller at sunset → 🎰 Fremont Street downtown (Viva Vision hourly from 6 PM) — dry after 5 PM' },
         { time: '7:30 PM', text: '🎸 ALTERNATIVE — W.A.S.P. + KK&rsquo;s Priest @ House of Blues, 3950 S Las Vegas Blvd. Your call: this replaces the Fremont Street evening, it does not stack with it.' }
       ],
       transit: [
         'Everything today is inside the Venetian/Palazzo complex except the blood drive',
-        'Fashion Show Mall is directly across the Strip — ~8 min walk',
+        'Fashion Show Mall is directly across the Strip — ~8 min walk, and it is indoors once you are inside',
         'Sphere is closed tonight — no show',
         'Fremont Street is ~10 min / 5 mi from the Palazzo; the 7 PM reel is Stone Temple Pilots',
-        'House of Blues (the W.A.S.P. option) is ~10 min SOUTH on the Strip — the opposite direction from Fremont Street',
-        'The Metallica Pop-Up at Hard Rock Cafe, 3771 S Las Vegas Blvd, is free, all ages, open today — ~25 min walk from the Palazzo'
+        'House of Blues (the W.A.S.P. option) is ~10 min SOUTH on the Strip — the opposite direction from Fremont Street'
       ],
-      tip: '<strong>Give blood at noon, then take it easy.</strong> Eat an iron-rich meal 2–3 hours before and drink extra water from Thursday onward — no gym today. Then use the one free evening of the trip: <strong>High Roller at sunset</strong> (~5:45 PM, LINQ Promenade, ~15 min walk) and <strong>Fremont Street</strong> downtown, where the Viva Vision light shows run hourly from 6 PM and the 7 PM reel is Stone Temple Pilots. Dinner: Golden Steer (308 W Sahara, since 1958) on the way, or eat downtown. If you would rather stay close, CUT or Delmonico on property. Book ahead if you settle on Golden Steer. <strong>One alternative worth a look:</strong> W.A.S.P. + KK&rsquo;s Priest play House of Blues at 7:30 PM tonight — the very same tour you caught in Boston — which would mean swapping the Fremont Street evening for it rather than adding to it. And any time today: the free Metallica Pop-Up at Hard Rock Cafe, 3771 S Las Vegas Blvd, open to all ages.',
+      tip: '<strong>Give blood at noon, then take it easy.</strong> Eat an iron-rich meal 2–3 hours before and drink extra water — no gym today, hotel or otherwise. Today&rsquo;s hours, in order: the free Pop-Up and Fan Experience at the Summit Showroom in the Venetian runs 10 AM–8 PM on Fridays, so you can do it before or after the donation; the blood drive sits inside its 12–6 window; Black Box Friday runs 2–8 PM at The Stadium here in the Palazzo. Then use the one free evening of the trip: <strong>High Roller at sunset</strong> (~5:45 PM, LINQ Promenade, ~15 min walk) and <strong>Fremont Street</strong> downtown, where the Viva Vision shows run hourly from 6 PM and the 7 PM reel is Stone Temple Pilots. Dinner: Golden Steer (308 W Sahara, since 1958) on the way, or eat downtown. If you would rather stay close, CUT or Delmonico on property. <strong>One alternative worth a look:</strong> W.A.S.P. + KK&rsquo;s Priest play House of Blues at 7:30 PM tonight — the same tour you caught in Boston — which would mean swapping the Fremont Street evening for it rather than adding to it. <strong>And one money item:</strong> no Delta cancellation confirmation ever arrived for DL 1542 ($1,057.60) — ten minutes with the Delta app today.',
       food: [
         { name: 'CUT by Wolfgang Puck', meta: '📍 The Palazzo · AAA Four Diamond · the 40 oz tomahawk is the headline', id: 'today-lv-cut-2' },
         { name: 'Delmonico Steakhouse', meta: '📍 The Venetian · Emeril Lagasse · Wine Spectator Grand Award · chateaubriand tableside', id: 'today-lv-delmonico' },
@@ -216,25 +217,27 @@ var TRIP = {
     {
       date: '2026-10-31',
       label: 'Saturday · HALLOWEEN · Show #2 🎸',
-      weather: { hi: 71, lo: 60, icon: '⛈️', rain: 41 },
+      weather: { hi: 72, lo: 61, icon: '🌧️', rain: 90 },
       pills: [
         { text: '🎃 Halloween on the Strip', cls: 'warn' },
-        { text: '⛈️ 78% storms overnight', cls: 'warn' },
-        { text: '🎸 Metallica ~8:45pm', cls: 'good' }
+        { text: '🌧️ 90% rain overnight', cls: 'warn' },
+        { text: '🎸 Metallica ~8:45pm', cls: 'good' },
+        { text: '🎸 NO REPEATS from Thursday', cls: 'good' }
       ],
-      warn: 'Halloween on the Strip is the busiest night of the year here. Doors are 7:00 PM — leave the suite early and use the indoor bridge rather than attempting a rideshare. <strong>And the forecast escalated: 41% showers by day, then 78% showers and thunderstorms overnight</strong> — the walk back will very likely be wet, so carry the shell to the doors.',
+      warn: 'Halloween on the Strip is the busiest night of the year here. Doors are 7:00 PM — leave the suite early and use the indoor bridge rather than attempting a rideshare. <strong>The forecast got worse: 50% showers after 1 PM, then <em>rain showers overnight at 90%</em></strong> — the walk back will be wet, and it will be 61°F, about 11°F colder than Thursday. Carry the shell to the doors.',
       timeline: [
-        { time: '10 AM→', text: '🛍️ Life Burns Faster Experience · The Venetian' },
-        { time: '5:30 PM PT', text: '⚽ SKC vs Dallas kickoff (7:30 PM CT) — catchable before doors if you want it' },
-        { time: '7:00 PM PT', text: '🎪 Doors @ Sphere' },
-        { time: '8:30 PM', text: '🎸 METALLICA — show #2 · HALLOWEEN' }
+        { time: '10 AM→', text: '🛍️ Life Burns Faster Experience · The Venetian (Saturday runs 10 AM until after the show)' },
+        { time: '7:00 PM PT', text: '🎪 Doors @ Sphere · 50% showers — shell for the queue' },
+        { time: '8:30 PM', text: '🎸 METALLICA — show #2 · HALLOWEEN · the <em>Blackened half</em>: no song from Thursday repeats. Expect <em>Blackened</em> to open and <em>For Whom the Bell Tolls → One → Enter Sandman</em> to close.' },
+        { time: '~1:00 AM', text: '🌧️ Walk back through rain showers at 90%, 61°F — indoor bridge, shell, no taxi' }
       ],
       transit: [
         'Use the indoor bridge to Sphere — the Strip is gridlocked on Halloween',
         'Costumes are welcome but check Sphere\'s bag policy before dressing up',
-        'Rideshare pickup at the Venetian is chaotic tonight — walking wins'
+        'Rideshare pickup at the Venetian is chaotic tonight — walking wins',
+        'Clocks fall back at 2 AM tonight — the Sunday flight is PST'
       ],
-      tip: 'Halloween is the single biggest crowd night in Vegas, and Metallica plus the costume traffic makes the Strip genuinely hard to move through after 6 PM. The indoor walk to Sphere is the whole reason you are in this building — use it and skip the traffic entirely. Set lists are different from Thursday, so nothing repeats.',
+      tip: 'Halloween is the single biggest crowd night in Vegas, and Metallica plus the costume traffic makes the Strip genuinely hard to move through after 6 PM. The indoor walk to Sphere is the whole reason you are in this building — use it and skip the traffic entirely. <strong>Tonight is your payoff for the No Repeat Weekend:</strong> nothing from Thursday repeats, so you get a completely different 16–18 songs — the Blackened/Fuel/Leper Messiah side of the catalogue, with <em>Enter Sandman</em>, <em>One</em> and <em>For Whom the Bell Tolls</em> instead of Thursday&rsquo;s <em>Master of Puppets</em> close. <em>Sanitarium</em> and <em>Orion</em> are off the table — Thursday took them. Expect to walk out into rain: it is 90% overnight, so plan on the bridge and a shell rather than a queue for a taxi.',
       food: [
         { name: 'Bouchon Bistro', meta: '📍 The Venetian, 10th floor · Thomas Keller · the easy, excellent pre-show meal', id: 'today-lv-bouchon' },
         { name: 'Miznon', meta: '📍 The Palazzo casino floor · Israeli, quick', id: 'today-lv-miznon' },
@@ -244,26 +247,26 @@ var TRIP = {
     {
       date: '2026-11-01',
       label: 'Sunday · Vegas → KC',
-      weather: { hi: 70, lo: 55, icon: '⛈️', rain: 62 },
+      weather: { hi: 68, lo: 54, icon: '🌧️', rain: 80 },
       pills: [
-        { text: '✈️ WN 2427 8:20am', cls: 'good' },
-        { text: '⛈️ Storms likely — wet taxi', cls: 'warn' },
-        { text: '⏰ ~6am checkout', cls: 'warn' },
-        { text: '🛍️ Forfeits final Expo day', cls: 'warn' }
+        { text: '✈️ WN 2427 8:20am PST', cls: 'good' },
+        { text: '🌧️ 80% rain before 4p', cls: 'warn' },
+        { text: '⏰ Leave Palazzo by 6:30', cls: 'warn' },
+        { text: '🕐 Clocks fell back', cls: 'warn' }
       ],
-      warn: 'The 8:20 AM departure means leaving the hotel around 6 AM against an 11 AM checkout, and it costs you the last day of the Life Burns Faster Experience (10 AM–2 PM). <strong>And the forecast got worse: 62% showers and thunderstorms, likely before 4 PM</strong> — a wet taxi and possible LAS ground delays. Leave the Palazzo at 6:30 and watch the Southwest app from 5:30.',
+      warn: 'The 8:20 AM departure means leaving the hotel around 6:30, against an 11 AM checkout, and it costs you the last day of the Life Burns Faster Experience (10 AM–2 PM). <strong>And the forecast got worse again: 80% rain showers before 4 PM</strong> (52% two days ago, 62% yesterday) — a wet taxi line and a real ground-delay risk at LAS. Watch the Southwest app from 5:30. <strong>Daylight saving ended overnight: 8:20 AM is PST.</strong>',
       timeline: [
         { time: '~6:00 AM', text: 'Check out · LAS is ~2 mi from the hotel' },
-        { time: '6:30 AM', text: 'Arrive LAS, clear security' },
-        { time: '8:20 AM', text: 'Depart LAS on WN 2427 (seats 04E / 04F)' },
-        { time: '1:05 PM CT', text: 'Land MCI · home' }
+        { time: '6:30 AM', text: 'Taxi to LAS — wet, so allow extra · clear security' },
+        { time: '8:20 AM PST', text: 'Depart LAS on WN 2427 (seats 04E / 04F)' },
+        { time: '1:05 PM CST', text: 'Land MCI · home · capture parking days + mileage for the expense report' }
       ],
       transit: [
-        'The Palazzo → LAS: ~2 mi / 10–15 min',
+        'The Palazzo → LAS: ~2 mi / 10–15 min normally — budget 20+ in rain',
         'SkyCap or self-check available — Southwest opens 2h before departure',
         '2h before an 8:20 AM departure means a 6:20 AM airport arrival'
       ],
-      tip: 'An early one. Bag drag starts around 6 AM, which is a hard wake-up after a show night. Nothing else to manage — the flight is booked, seats are assigned, and it is a single nonstop home. If the final Expo day matters more than the fare, say the word and I will price the swap before the change fees bite.'
+      tip: 'An early one. Bag drag starts around 6 AM, which is a hard wake-up after a show night that ends near 1 AM in the rain. Nothing else to manage — the flight is booked, seats are assigned, and it is a single nonstop home. Two things to remember: <strong>the clocks fell back</strong>, so 8:20 AM is Pacific Standard Time, and <strong>Sunday is an 80% rain day</strong> — leave by 6:30 and treat the taxi as the risk, not security. If the final Expo day matters more than the fare, say the word and I will price the swap before the change fees bite.'
     }
   ]
 };
