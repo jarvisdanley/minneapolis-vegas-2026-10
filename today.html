@@ -80,7 +80,7 @@
 </div>
 
 <div class="section" id="weather-section">
-  <h2>🌤️ Weather <span style="font-size:0.65rem;color:var(--dim);font-weight:400">· refreshed Fri Oct 30, 5:00 AM PT</span></h2>
+  <h2>🌤️ Weather <span style="font-size:0.65rem;color:var(--dim);font-weight:400">· refreshed Sat Oct 31, 5:00 AM PT</span></h2>
   <div class="weather-row" id="weather-content"></div>
 </div>
 
@@ -180,7 +180,7 @@ var TRIP = {
     },
     {
       date: '2026-10-30',
-      label: 'Friday · Vegas PTO',
+      label: 'Friday · Vegas PTO ✓ done',
       weather: { hi: 73, lo: 60, icon: '⛈️', rain: 60 },
       pills: [
         { text: '⛈️ 60% storms — peak 1–3p', cls: 'warn' },
@@ -217,19 +217,21 @@ var TRIP = {
     {
       date: '2026-10-31',
       label: 'Saturday · HALLOWEEN · Show #2 🎸',
-      weather: { hi: 72, lo: 61, icon: '🌧️', rain: 90 },
+      weather: { hi: 72, lo: 61, icon: '⛅', rain: 30 },
       pills: [
         { text: '🎃 Halloween on the Strip', cls: 'warn' },
-        { text: '🌧️ 90% rain overnight', cls: 'warn' },
+        { text: '⛅ 72°F · rain only 1–4p at 30%', cls: 'good' },
+        { text: '🌙 Night rain 60% after 1am (was 90%)', cls: 'warn' },
         { text: '🎸 Metallica ~8:45pm', cls: 'good' },
-        { text: '🎸 NO REPEATS from Thursday', cls: 'good' }
+        { text: '🚫 NO REPEATS from Thursday', cls: 'good' }
       ],
-      warn: 'Halloween on the Strip is the busiest night of the year here. Doors are 7:00 PM — leave the suite early and use the indoor bridge rather than attempting a rideshare. <strong>The forecast got worse: 50% showers after 1 PM, then <em>rain showers overnight at 90%</em></strong> — the walk back will be wet, and it will be 61°F, about 11°F colder than Thursday. Carry the shell to the doors.',
+      warn: 'Halloween on the Strip is the busiest night of the year here. Doors are 7:00 PM — leave the suite early and use the indoor bridge rather than attempting a rideshare. <strong>The forecast improved overnight: 72°F and partly sunny, with the only daytime rain risk a 30% chance between 1 and 4 PM.</strong> The overnight number also eased — <em>rain likely after about 1 AM at 60%</em>, down from 90% — but that is right when you walk out, and it will be 61°F. <strong>Carry the shell to the doors anyway.</strong>',
       timeline: [
         { time: '10 AM→', text: '🛍️ Life Burns Faster Experience · The Venetian (Saturday runs 10 AM until after the show)' },
-        { time: '7:00 PM PT', text: '🎪 Doors @ Sphere · 50% showers — shell for the queue' },
-        { time: '8:30 PM', text: '🎸 METALLICA — show #2 · HALLOWEEN · the <em>Blackened half</em>: no song from Thursday repeats. Expect <em>Blackened</em> to open and <em>For Whom the Bell Tolls → One → Enter Sandman</em> to close.' },
-        { time: '~1:00 AM', text: '🌧️ Walk back through rain showers at 90%, 61°F — indoor bridge, shell, no taxi' }
+        { time: 'Afternoon', text: '⛅ 72°F, partly sunny. Only rain risk is 1–4 PM at 30% — the Strip is busy all day with costumes' },
+        { time: '7:00 PM PT', text: '🎪 Doors @ Sphere · the queue is outdoors and Halloween crowds are heavy — go early' },
+        { time: '~8:45 PM', text: '🎸 METALLICA — show #2 · HALLOWEEN · the <em>Blackened half</em>: no song from Thursday repeats. Expect <em>Blackened</em> to open and <em>For Whom the Bell Tolls → One → Enter Sandman</em> to close.' },
+        { time: '~1:00 AM', text: '🌧️ Walk back — rain turns likely after about 1 AM at 60%, 61°F — indoor bridge, shell, no taxi' }
       ],
       transit: [
         'Use the indoor bridge to Sphere — the Strip is gridlocked on Halloween',
@@ -237,7 +239,7 @@ var TRIP = {
         'Rideshare pickup at the Venetian is chaotic tonight — walking wins',
         'Clocks fall back at 2 AM tonight — the Sunday flight is PST'
       ],
-      tip: 'Halloween is the single biggest crowd night in Vegas, and Metallica plus the costume traffic makes the Strip genuinely hard to move through after 6 PM. The indoor walk to Sphere is the whole reason you are in this building — use it and skip the traffic entirely. <strong>Tonight is your payoff for the No Repeat Weekend:</strong> nothing from Thursday repeats, so you get a completely different 16–18 songs — the Blackened/Fuel/Leper Messiah side of the catalogue, with <em>Enter Sandman</em>, <em>One</em> and <em>For Whom the Bell Tolls</em> instead of Thursday&rsquo;s <em>Master of Puppets</em> close. <em>Sanitarium</em> and <em>Orion</em> are off the table — Thursday took them. Expect to walk out into rain: it is 90% overnight, so plan on the bridge and a shell rather than a queue for a taxi.',
+      tip: 'Halloween is the single biggest crowd night in Vegas, and Metallica plus the costume traffic makes the Strip genuinely hard to move through after 6 PM. The indoor walk to Sphere is the whole reason you are in this building — use it and skip the traffic entirely. <strong>Tonight is your payoff for the No Repeat Weekend:</strong> nothing from Thursday repeats, so you get a completely different 16–18 songs — the Blackened / Fuel / Leper Messiah side of the catalogue, closing on <em>Enter Sandman</em>, <em>One</em> and <em>For Whom the Bell Tolls</em> rather than Thursday&rsquo;s <em>Master of Puppets</em>. <em>Sanitarium</em> and <em>Orion</em> are both off the table — Thursday took them, so expect two surprises in their slots. <strong>The weather turned in your favour:</strong> 32% this afternoon instead of 50%, and 60% overnight instead of 90% — but the rain still arrives around 1 AM, so take the shell and use the bridge rather than joining a taxi queue.',
       food: [
         { name: 'Bouchon Bistro', meta: '📍 The Venetian, 10th floor · Thomas Keller · the easy, excellent pre-show meal', id: 'today-lv-bouchon' },
         { name: 'Miznon', meta: '📍 The Palazzo casino floor · Israeli, quick', id: 'today-lv-miznon' },
@@ -247,26 +249,26 @@ var TRIP = {
     {
       date: '2026-11-01',
       label: 'Sunday · Vegas → KC',
-      weather: { hi: 68, lo: 54, icon: '🌧️', rain: 80 },
+      weather: { hi: 70, lo: 53, icon: '⛅', rain: 32 },
       pills: [
         { text: '✈️ WN 2427 8:20am PST', cls: 'good' },
-        { text: '🌧️ 80% rain before 4p', cls: 'warn' },
+        { text: '⛅ 32% rain, before 2p only (was 80%)', cls: 'good' },
         { text: '⏰ Leave Palazzo by 6:30', cls: 'warn' },
         { text: '🕐 Clocks fell back', cls: 'warn' }
       ],
-      warn: 'The 8:20 AM departure means leaving the hotel around 6:30, against an 11 AM checkout, and it costs you the last day of the Life Burns Faster Experience (10 AM–2 PM). <strong>And the forecast got worse again: 80% rain showers before 4 PM</strong> (52% two days ago, 62% yesterday) — a wet taxi line and a real ground-delay risk at LAS. Watch the Southwest app from 5:30. <strong>Daylight saving ended overnight: 8:20 AM is PST.</strong>',
+      warn: 'The 8:20 AM departure means leaving the hotel around 6:30, against an 11 AM checkout, and it costs you the last day of the Life Burns Faster Experience (10 AM–2 PM). <strong>But the weather forecast transformed overnight: 80% down to 32%, and the rain now clears by 2 PM</strong> rather than sitting over your departure. The wet-taxi and LAS ground-delay risk has largely gone — it is still gusting 20+ mph, so glance at the Southwest app once. <strong>Daylight saving ends overnight: 8:20 AM is PST.</strong>',
       timeline: [
         { time: '~6:00 AM', text: 'Check out · LAS is ~2 mi from the hotel' },
-        { time: '6:30 AM', text: 'Taxi to LAS — wet, so allow extra · clear security' },
+        { time: '6:30 AM', text: 'Taxi to LAS · 32% rain, breezy — normal run, not a weather operation' },
         { time: '8:20 AM PST', text: 'Depart LAS on WN 2427 (seats 04E / 04F)' },
         { time: '1:05 PM CST', text: 'Land MCI · home · capture parking days + mileage for the expense report' }
       ],
       transit: [
-        'The Palazzo → LAS: ~2 mi / 10–15 min normally — budget 20+ in rain',
+        'The Palazzo → LAS: ~2 mi / 10–15 min · 20 min if the shower lands on you',
         'SkyCap or self-check available — Southwest opens 2h before departure',
         '2h before an 8:20 AM departure means a 6:20 AM airport arrival'
       ],
-      tip: 'An early one. Bag drag starts around 6 AM, which is a hard wake-up after a show night that ends near 1 AM in the rain. Nothing else to manage — the flight is booked, seats are assigned, and it is a single nonstop home. Two things to remember: <strong>the clocks fell back</strong>, so 8:20 AM is Pacific Standard Time, and <strong>Sunday is an 80% rain day</strong> — leave by 6:30 and treat the taxi as the risk, not security. If the final Expo day matters more than the fare, say the word and I will price the swap before the change fees bite.'
+      tip: 'An early one. Bag drag starts around 6 AM, which is a hard wake-up after a show night that ends near 1 AM. Nothing else to manage — the flight is booked, seats are assigned, and it is a single nonstop home. Two things to remember: <strong>the clocks fell back</strong>, so 8:20 AM is Pacific Standard Time, and <strong>the rain risk has collapsed from 80% to 32% and clears by 2 PM</strong> — so the taxi is no longer the problem it looked like three days ago. One thing to expect on the ground in KC: <strong>capture the MCI parking days and the mileage round trip</strong> for the expense report, along with any receipts still loose.'
     }
   ]
 };
